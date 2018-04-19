@@ -113,11 +113,11 @@ public class TokenizeationAplpication extends javax.swing.JFrame {
         validateRes_textArea.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void run_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_run_btnActionPerformed
-        //GEN-FIRST:event_run_btnActionPerformed
+    private void run_btnActionPerformed(java.awt.event.ActionEvent evt) {                                        
+//GEN-FIRST:event_run_btnActionPerformed
        if(regex_list.getSelectedValue() == "Student ID pattern"){
-        String Student_ID_pattern = "B[0-9]+";
-        
+        String Student_ID_pattern = "[BMD][0-9]{7}";
+                
         Pattern pattern=Pattern.compile(Student_ID_pattern);
         Matcher regMatcher = pattern.matcher(textbox.getText());
         if(!regMatcher.matches()){
@@ -130,6 +130,21 @@ public class TokenizeationAplpication extends javax.swing.JFrame {
                                         "\nRegex : " +Student_ID_pattern+
                                         "\n =========== \n StudentID: True" );}
        
+       }
+       else if(regex_list.getSelectedValue() == "Password pattern"){
+           String Password_Pattern = "([\\w]{8,})+([\\.\\+\\-\\*\\/]{2})";
+           
+            Pattern pattern=Pattern.compile(Password_Pattern);
+            Matcher regMatcher = pattern.matcher(textbox.getText());
+            if(!regMatcher.matches()){
+             validateRes_textArea.setText("Text : "+textbox.getText()+
+                                          "\nRegex : " +Password_Pattern+
+                                          "\n =========== \n Password: false" );
+            }
+            else{
+            validateRes_textArea.setText("Text : "+textbox.getText()+
+                                        "\nRegex : " +Password_Pattern+
+                                        "\n =========== \n Passowrd: True" );}
        }
     }//GEN-LAST:event_run_btnActionPerformed
 
