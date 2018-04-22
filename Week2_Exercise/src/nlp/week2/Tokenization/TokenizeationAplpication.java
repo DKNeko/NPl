@@ -1,6 +1,10 @@
 package nlp.week2.Tokenization;
 
-import java.util.regex.*;
+import edu.stanford.nlp.trees.TypedDependency;
+import java.util.List;
+import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 public class TokenizeationAplpication extends javax.swing.JFrame {
@@ -116,66 +120,87 @@ public class TokenizeationAplpication extends javax.swing.JFrame {
     private void run_btnActionPerformed(java.awt.event.ActionEvent evt) {
         
 //GEN-FIRST:event_run_btnActionPerformed
-       if(regex_list.getSelectedValue() == "Student ID pattern"){
+      /* if(regex_list.getSelectedValue() == "Student ID pattern"){
         String Student_ID_pattern = "B[0-9]+";
         
         Pattern pattern=Pattern.compile(Student_ID_pattern);
-        Matcher regMatcher = pattern.matcher(textbox.getText());
+        Matcher regexMatcher = pattern.matcher(textbox.getText());
         validateRes_textArea.setText("Text : "+textbox.getText()+
                                           "\nRegex : " +Student_ID_pattern+
-                                          "\n =========== \n StudentID: "+regMatcher.matches() );
+                                                              "\n =========== \n StudentID: "+regexMatcher.matches() );
        }
        else if(regex_list.getSelectedValue() == "Password pattern"){
            String Password_Pattern = "([\\w]{8,})+([\\.\\+\\-\\*\\/]{2})";
            
             Pattern pattern=Pattern.compile(Password_Pattern);
-            Matcher regMatcher = pattern.matcher(textbox.getText());
+            Matcher regexMatcher = pattern.matcher(textbox.getText());
              validateRes_textArea.setText("Text : "+textbox.getText()+
                                           "\nRegex : " +Password_Pattern+
-                                          "\n =========== \n Password: "+regMatcher.matches() );
+                                          "\n =========== \n Password: "+regexMatcher.matches() );
        }
        else if(regex_list.getSelectedValue() == "Identification pattern"){
            String Identification_Pattern = "[\\dA-Z]{9,13}";
            
             Pattern pattern=Pattern.compile(Identification_Pattern);
-            Matcher regMatcher = pattern.matcher(textbox.getText());
+            Matcher regexMatcher = pattern.matcher(textbox.getText());
             validateRes_textArea.setText("Text : "+textbox.getText()+
                                           "\nRegex : " +Identification_Pattern+
-                                          "\n =========== \n Identification: "+regMatcher.matches() );
+                                          "\n =========== \n Identification: "+regexMatcher.matches() );
           
        }
        else if(regex_list.getSelectedValue() == "PostCode pattern"){
            String PostCode_pattern = "[\\d]{5}";
            
             Pattern pattern=Pattern.compile(PostCode_pattern);
-            Matcher regMatcher = pattern.matcher(textbox.getText());
+            Matcher regexMatcher = pattern.matcher(textbox.getText());
             validateRes_textArea.setText("Text : "+textbox.getText()+
                                           "\nRegex : " +PostCode_pattern+
-                                          "\n =========== \n PostCode: "+regMatcher.matches() );
+                                          "\n =========== \n PostCode: "+regexMatcher.matches() );
           
        }
        else if(regex_list.getSelectedValue() == "PhonNumber pattern"){
            String PhonNumber_pattern = "[\\d]{3}-[\\d]{7}";
            
             Pattern pattern=Pattern.compile(PhonNumber_pattern);
-            Matcher regMatcher = pattern.matcher(textbox.getText());
+            Matcher regexMatcher = pattern.matcher(textbox.getText());
             validateRes_textArea.setText("Text : "+textbox.getText()+
                                           "\nRegex : " +PhonNumber_pattern+
-                                          "\n =========== \n PhonNumber: "+regMatcher.matches() );
+                                          "\n =========== \n PhonNumber: "+regexMatcher.matches() );
           
        }
         else if(regex_list.getSelectedValue() == "Email Pattern"){
            String Email_pattern = "^(.+)@(.+)$";
            
             Pattern pattern=Pattern.compile(Email_pattern);
-            Matcher regMatcher = pattern.matcher(textbox.getText());
+            Matcher regexMatcher = pattern.matcher(textbox.getText());
             validateRes_textArea.setText("Text : "+textbox.getText()+
                                           "\nRegex : " +Email_pattern+
-                                          "\n =========== \n Email: "+regMatcher.matches() );
+                                          "\n =========== \n Email: "+regexMatcher.matches() );
           
        }  
-        else {JOptionPane.showMessageDialog(null, "Please select Regex" );}
-       
+        else {JOptionPane.showMessageDialog(null, "Please select Regex" );}*/
+              System.out.println(textbox.getText());
+    if(regex_list.getSelectedValue() == null){
+        JOptionPane.showMessageDialog(null,"Please select Regex");
+    }else if("".equals(textbox.getText())){
+        JOptionPane.showMessageDialog(null,"Please enter text");
+    }else{
+     Tokenize tk = new Tokenize();
+     regEx reg = new regEx();
+     List<TypedDependency> tdl = tk.cutter(textbox.getText());
+     validateRes_textArea.setText("");
+     
+         validateRes_textArea.append("Text : "+textbox.getText()+
+                                     "\nRegex : " +reg.regEx(regex_list.getSelectedIndex())+
+                                     "\n =========== \n");
+         
+         
+          for (TypedDependency tdl_token : tdl){
+              
+              String w = tdl_token.dep().word();
+               validateRes_textArea.append(w+" : "+ reg.checkRegEx(w,regex_list.getSelectedIndex())+"\n");   
+          }   
+    }
     }//GEN-LAST:event_run_btnActionPerformed
 
     public static void main(String args[]) {
