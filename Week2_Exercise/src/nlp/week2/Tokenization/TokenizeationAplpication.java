@@ -35,7 +35,7 @@ public class TokenizeationAplpication extends javax.swing.JFrame {
         jLabel2.setText("Select Regex:");
 
         regex_list.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Student ID pattern", "Password pattern", "Identification pattern", "PostCode pattern", "PhonNumber pattern", "Email Pattern" };
+            String[] strings = { "Student ID pattern", "Password pattern", "Identification pattern", "PostCode pattern", "PhonNumber pattern", "Email pattern", "License Plate pattern" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });

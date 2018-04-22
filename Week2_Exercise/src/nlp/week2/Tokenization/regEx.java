@@ -14,9 +14,9 @@ public class regEx {
     }
     
     public boolean checkRegEx(String text,int i){        
-           Pattern pt0 = Pattern.compile(regex[i]);              
-           Matcher mat0 = pt0.matcher(text);          
-           return mat0.matches();
+           Pattern Pat = Pattern.compile(regex[i]);              
+           Matcher Mat = Pat.matcher(text);          
+           return Mat.matches();
           
         
     }   
