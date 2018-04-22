@@ -117,10 +117,28 @@ public class TokenizeationAplpication extends javax.swing.JFrame {
         validateRes_textArea.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void run_btnActionPerformed(java.awt.event.ActionEvent evt) {
-        
+    private void run_btnActionPerformed(java.awt.event.ActionEvent evt) {  
 //GEN-FIRST:event_run_btnActionPerformed
-      /* if(regex_list.getSelectedValue() == "Student ID pattern"){
+    if(regex_list.getSelectedValue() == null){
+        JOptionPane.showMessageDialog(null,"Please select Regex");
+    }else if("".equals(textbox.getText())){
+        JOptionPane.showMessageDialog(null,"Please enter text");
+    }else{
+     Tokenize tk = new Tokenize();
+     regEx reg = new regEx();
+     List<TypedDependency> tdl = tk.cutter(textbox.getText());
+     validateRes_textArea.setText("");
+     
+         validateRes_textArea.append("Text : "+textbox.getText()+
+                                     "\nRegex : " +reg.regEx(regex_list.getSelectedIndex())+
+                                     "\n =========== \n");
+         
+         
+          for (TypedDependency tdl_token : tdl){
+              
+              String w = tdl_token.dep().word();
+               validateRes_textArea.append(w+" : "+ reg.checkRegEx(w,regex_list.getSelectedIndex())+"\n");   
+    /* if(regex_list.getSelectedValue() == "Student ID pattern"){
         String Student_ID_pattern = "B[0-9]+";
         
         Pattern pattern=Pattern.compile(Student_ID_pattern);
@@ -179,28 +197,8 @@ public class TokenizeationAplpication extends javax.swing.JFrame {
           
        }  
         else {JOptionPane.showMessageDialog(null, "Please select Regex" );}*/
-              System.out.println(textbox.getText());
-    if(regex_list.getSelectedValue() == null){
-        JOptionPane.showMessageDialog(null,"Please select Regex");
-    }else if("".equals(textbox.getText())){
-        JOptionPane.showMessageDialog(null,"Please enter text");
-    }else{
-     Tokenize tk = new Tokenize();
-     regEx reg = new regEx();
-     List<TypedDependency> tdl = tk.cutter(textbox.getText());
-     validateRes_textArea.setText("");
-     
-         validateRes_textArea.append("Text : "+textbox.getText()+
-                                     "\nRegex : " +reg.regEx(regex_list.getSelectedIndex())+
-                                     "\n =========== \n");
-         
-         
-          for (TypedDependency tdl_token : tdl){
-              
-              String w = tdl_token.dep().word();
-               validateRes_textArea.append(w+" : "+ reg.checkRegEx(w,regex_list.getSelectedIndex())+"\n");   
           }   
-    }
+      }
     }//GEN-LAST:event_run_btnActionPerformed
 
     public static void main(String args[]) {
