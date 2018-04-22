@@ -10,20 +10,23 @@ import edu.stanford.nlp.trees.*;
 
 
 public class Tokenize {
-/*LexicalizedParser lp = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
-TokenizerFactory<CoreLabel> tokenizerFactory = PTBTokenizer.factory(new CoreLabelTokenFactory(), "");
-Tokenizer<CoreLabel> tok = tokenizerFactory.getTokenizer(new StringReader("This is an example text"));
-java.util.List<CoreLabel> rawWords = tok.tokenize();
-Tree parse = lp.apply(rawWords);
-TreebankLanguagePack tlp = lp.treebankLanguagePack();
-GrammaticalStructureFactory gsf = tlp.grammaticalStructureFactory();
-GrammaticalStructure gs = gsf.newGrammaticalStructure(parse);
-List<TypedDependency> tdl = gs.typedDependenciesCCprocessed();
-for (TypedDependency tdl_token : regEx) {
-
-String w = tdl_token.dep().word();
-System.out.println(w);
-
-}*/
+public static void main(String[] args) throws IOException {
+    for (String arg : args) {
+      // option #1: By sentence.
+      DocumentPreprocessor dp = new DocumentPreprocessor(arg);
+      for (List<HasWord> sentence : dp) {
+        System.out.println(sentence);
+      }
+      // option #2: By token
+      PTBTokenizer<CoreLabel> ptbt = new PTBTokenizer<>(new FileReader(arg),
+              new CoreLabelTokenFactory(), "");
+      while (ptbt.hasNext()) {
+        CoreLabel label = ptbt.next();
+        System.out.println(label);
+      }
+    }
+  }
 }
+
+
 

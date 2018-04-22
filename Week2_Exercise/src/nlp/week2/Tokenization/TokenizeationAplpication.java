@@ -173,7 +173,8 @@ public class TokenizeationAplpication extends javax.swing.JFrame {
                                           "\nRegex : " +Email_pattern+
                                           "\n =========== \n Email: "+regMatcher.matches() );
           
-       }    
+       }  
+        else {JOptionPane.showMessageDialog(null, "Please select Regex" );}
        
     }//GEN-LAST:event_run_btnActionPerformed
 
