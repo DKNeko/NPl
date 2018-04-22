@@ -113,24 +113,68 @@ public class TokenizeationAplpication extends javax.swing.JFrame {
         validateRes_textArea.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void run_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_run_btnActionPerformed
-        //GEN-FIRST:event_run_btnActionPerformed
+    private void run_btnActionPerformed(java.awt.event.ActionEvent evt) {
+        
+//GEN-FIRST:event_run_btnActionPerformed
        if(regex_list.getSelectedValue() == "Student ID pattern"){
         String Student_ID_pattern = "B[0-9]+";
         
         Pattern pattern=Pattern.compile(Student_ID_pattern);
         Matcher regMatcher = pattern.matcher(textbox.getText());
-        if(!regMatcher.matches()){
-             validateRes_textArea.setText("Text : "+textbox.getText()+
+        validateRes_textArea.setText("Text : "+textbox.getText()+
                                           "\nRegex : " +Student_ID_pattern+
-                                          "\n =========== \n StudentID: false" );
-        }
-        else{
-            validateRes_textArea.setText("Text : "+textbox.getText()+
-                                        "\nRegex : " +Student_ID_pattern+
-                                        "\n =========== \n StudentID: True" );}
-       
+                                          "\n =========== \n StudentID: "+regMatcher.matches() );
        }
+       else if(regex_list.getSelectedValue() == "Password pattern"){
+           String Password_Pattern = "([\\w]{8,})+([\\.\\+\\-\\*\\/]{2})";
+           
+            Pattern pattern=Pattern.compile(Password_Pattern);
+            Matcher regMatcher = pattern.matcher(textbox.getText());
+             validateRes_textArea.setText("Text : "+textbox.getText()+
+                                          "\nRegex : " +Password_Pattern+
+                                          "\n =========== \n Password: "+regMatcher.matches() );
+       }
+       else if(regex_list.getSelectedValue() == "Identification pattern"){
+           String Identification_Pattern = "[\\dA-Z]{9,13}";
+           
+            Pattern pattern=Pattern.compile(Identification_Pattern);
+            Matcher regMatcher = pattern.matcher(textbox.getText());
+            validateRes_textArea.setText("Text : "+textbox.getText()+
+                                          "\nRegex : " +Identification_Pattern+
+                                          "\n =========== \n Identification: "+regMatcher.matches() );
+          
+       }
+       else if(regex_list.getSelectedValue() == "PostCode pattern"){
+           String PostCode_pattern = "[\\d]{5}";
+           
+            Pattern pattern=Pattern.compile(PostCode_pattern);
+            Matcher regMatcher = pattern.matcher(textbox.getText());
+            validateRes_textArea.setText("Text : "+textbox.getText()+
+                                          "\nRegex : " +PostCode_pattern+
+                                          "\n =========== \n PostCode: "+regMatcher.matches() );
+          
+       }
+       else if(regex_list.getSelectedValue() == "PhonNumber pattern"){
+           String PhonNumber_pattern = "[\\d]{3}-[\\d]{7}";
+           
+            Pattern pattern=Pattern.compile(PhonNumber_pattern);
+            Matcher regMatcher = pattern.matcher(textbox.getText());
+            validateRes_textArea.setText("Text : "+textbox.getText()+
+                                          "\nRegex : " +PhonNumber_pattern+
+                                          "\n =========== \n PhonNumber: "+regMatcher.matches() );
+          
+       }
+        else if(regex_list.getSelectedValue() == "Email Pattern"){
+           String Email_pattern = "^(.+)@(.+)$";
+           
+            Pattern pattern=Pattern.compile(Email_pattern);
+            Matcher regMatcher = pattern.matcher(textbox.getText());
+            validateRes_textArea.setText("Text : "+textbox.getText()+
+                                          "\nRegex : " +Email_pattern+
+                                          "\n =========== \n Email: "+regMatcher.matches() );
+          
+       }    
+       
     }//GEN-LAST:event_run_btnActionPerformed
 
     public static void main(String args[]) {

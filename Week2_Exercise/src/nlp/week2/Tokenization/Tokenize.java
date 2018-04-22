@@ -10,7 +10,7 @@ import edu.stanford.nlp.trees.*;
 
 
 public class Tokenize {
-LexicalizedParser lp = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
+/*LexicalizedParser lp = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
 TokenizerFactory<CoreLabel> tokenizerFactory = PTBTokenizer.factory(new CoreLabelTokenFactory(), "");
 Tokenizer<CoreLabel> tok = tokenizerFactory.getTokenizer(new StringReader("This is an example text"));
 java.util.List<CoreLabel> rawWords = tok.tokenize();
@@ -19,12 +19,11 @@ TreebankLanguagePack tlp = lp.treebankLanguagePack();
 GrammaticalStructureFactory gsf = tlp.grammaticalStructureFactory();
 GrammaticalStructure gs = gsf.newGrammaticalStructure(parse);
 List<TypedDependency> tdl = gs.typedDependenciesCCprocessed();
-for (TypedDependency tdl_token : tdl) {
+for (TypedDependency tdl_token : regEx) {
 
 String w = tdl_token.dep().word();
 System.out.println(w);
 
+}*/
 }
-}
-
 
